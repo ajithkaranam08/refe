@@ -76,14 +76,14 @@ export const onboarding = [
     id: 1,
     title: 'The perfect ride is just a tap away!',
     description:
-      'Your journey begins with Ryde. Find your ideal ride effortlessly.',
+      'Your journey begins with Ryde. Find your ideal Driver effortlessly.',
     image: images.onboarding1,
   },
   {
     id: 2,
-    title: 'Best car in your hands with Ryde',
+    title: 'Best Driver in your hands with Ryde',
     description:
-      'Discover the convenience of finding your perfect ride with Ryde',
+      'Discover the convenience of finding your perfect driver with Ryde',
     image: images.onboarding2,
   },
   {
