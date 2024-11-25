@@ -31,7 +31,7 @@ const Home = () => {
           <View className="w-[32px] h-[4px] mx-1 bg-[#E2E8F0] rounded-full" />
         }
         activeDot={
-          <View className="w-[32px] h-[4px] mx-1 bg-[#0286FF] rounded-full" />
+          <View className="w-[32px] h-[4px] mx-1 bg-[#FF7F2A] rounded-full" />
         }
         onIndexChanged={(index) => setActiveIndex(index)}
       >
