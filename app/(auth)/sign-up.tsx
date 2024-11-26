@@ -2,7 +2,7 @@ import CustomButton from '@/components/CustomButton';
 import InputField from '@/components/InputField';
 import { icons, images } from '@/constants';
 import { useState } from 'react';
-import { Image, View, ScrollView, Text } from 'react-native';
+import { Image, View, ScrollView, Text, Alert } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Link, router } from 'expo-router';
 import OAuth from '@/components/OAuth';
@@ -18,7 +18,7 @@ const Signup = () => {
     password: '',
   });
   const [verification, setVerification] = useState({
-    state: 'pending',
+    state: 'default',
     error: '',
     code: '',
   });
@@ -40,7 +40,7 @@ const Signup = () => {
         state: 'pending',
       });
     } catch (err: any) {
-      console.error(JSON.stringify(err, null, 2));
+      Alert.alert('Error', err.errors[0].longMessage);
     }
   };
   const onPressVerify = async () => {
