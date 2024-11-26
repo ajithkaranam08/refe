@@ -12,6 +12,7 @@ import home from '@/assets/icons/home.png';
 import list from '@/assets/icons/list.png';
 import lock from '@/assets/icons/lock.png';
 import map from '@/assets/icons/map.png';
+import mobile from '@/assets/icons/smartphone.png';
 import marker from '@/assets/icons/marker.png';
 import out from '@/assets/icons/out.png';
 import person from '@/assets/icons/person.png';
@@ -31,6 +32,7 @@ import onboarding1 from '@/assets/images/onboarding1.png';
 import onboarding2 from '@/assets/images/onboarding2.png';
 import onboarding3 from '@/assets/images/onboarding3.jpg';
 import signUpCar from '@/assets/images/signup-car.png';
+import refeLogo from '@/assets/images/Asset 3.png';
 
 export const images = {
   onboarding1,
@@ -41,6 +43,7 @@ export const images = {
   check,
   noResult,
   message,
+  refeLogo,
 };
 
 export const icons = {
@@ -69,6 +72,7 @@ export const icons = {
   star,
   target,
   to,
+  mobile,
 };
 
 export const onboarding = [
