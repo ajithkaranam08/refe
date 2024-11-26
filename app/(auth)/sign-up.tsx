@@ -4,17 +4,76 @@ import { icons, images } from '@/constants';
 import { useState } from 'react';
 import { Image, View, ScrollView, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Link } from 'expo-router';
+import { Link, router } from 'expo-router';
 import OAuth from '@/components/OAuth';
+import { useSignUp } from '@clerk/clerk-expo';
+import ReactNativeModel, { ReactNativeModal } from 'react-native-modal';
 
 const Signup = () => {
+  const { isLoaded, signUp, setActive } = useSignUp();
   const [form, setForm] = useState({
     name: '',
     email: '',
     mobile: '',
     password: '',
   });
-  const onSignupPress = async () => {};
+  const [verification, setVerification] = useState({
+    state: 'pending',
+    error: '',
+    code: '',
+  });
+
+  const onSignUpPress = async () => {
+    if (!isLoaded) {
+      return;
+    }
+    try {
+      await signUp.create({
+        emailAddress: form.email,
+        password: form.password,
+      });
+
+      await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
+
+      setVerification({
+        ...verification,
+        state: 'pending',
+      });
+    } catch (err: any) {
+      console.error(JSON.stringify(err, null, 2));
+    }
+  };
+  const onPressVerify = async () => {
+    if (!isLoaded) {
+      return;
+    }
+
+    try {
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code: verification.code,
+      });
+
+      if (completeSignUp.status === 'complete') {
+        await setActive({ session: completeSignUp.createdSessionId });
+        setVerification({
+          ...verification,
+          state: 'success',
+        });
+      } else {
+        setVerification({
+          ...verification,
+          error: 'verification failed',
+          state: 'success',
+        });
+      }
+    } catch (err: any) {
+      setVerification({
+        ...verification,
+        error: err.errors[0].longMessage,
+        state: 'success',
+      });
+    }
+  };
   return (
     <ScrollView className="flex-1 bg-white">
       <View className="flex-1 bg-white">
@@ -53,16 +112,16 @@ const Signup = () => {
             onChangeText={(value) => setForm({ ...form, email: value })}
           />{' '}
           <InputField
-            label="Mobile"
-            placeholder="Enter your Mobile Number"
-            icon={icons.mobile}
+            label="password"
+            placeholder="Enter your password"
+            icon={icons.lock}
             iconStyle={'h-8'}
-            value={form.mobile}
-            onChangeText={(value) => setForm({ ...form, mobile: value })}
+            value={form.password}
+            onChangeText={(value) => setForm({ ...form, password: value })}
           />
           <CustomButton
             title="Sign up"
-            onPress={onSignupPress}
+            onPress={onSignUpPress}
             className="mt-6"
           />
           <OAuth />
@@ -73,6 +132,59 @@ const Signup = () => {
             <Text className="text-primary-500">Login </Text>
           </Link>
         </View>
+        <ReactNativeModal
+          isVisible={verification.state === 'pending'}
+          onModalHide={() =>
+            setVerification({ ...verification, state: 'success' })
+          }
+        >
+          <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
+            <Text className="text-2xl  font-JakartaExtraBold mb-2">
+              Verification
+            </Text>
+            <Text className="font-Jakarta mb-5">
+              We've sent a verification code to {form.email}
+            </Text>
+            <InputField
+              label="Code"
+              icon={icons.lock}
+              placeholder="12345"
+              keyboardType="numeric"
+              onChangeText={(code) =>
+                setVerification({ ...verification, code })
+              }
+            />
+            {verification.error && (
+              <Text className="text-red-500 text-sm mt-1">
+                {verification.error}
+              </Text>
+            )}
+            <CustomButton
+              title="Verify Email"
+              onPress={onPressVerify}
+              className="mt-5 bg-success-500"
+            />
+          </View>
+        </ReactNativeModal>
+        <ReactNativeModal isVisible={verification.state === 'success'}>
+          <View className="bg-white px-7 py-9 rounded-2xl min-h-[300px]">
+            <Image
+              source={images.check}
+              className="w-[110px] h-[110px] mx-auto my-5"
+            />
+            <Text className="text-3xl font-JakartaExtraBold text-center">
+              Verified
+            </Text>
+            <Text className="text-base text-gray-400 font-Jakarta text-center mt-2">
+              you have successfully verified your account
+            </Text>
+            <CustomButton
+              title="Browse Home"
+              onPress={() => router.replace('/(root)/(tabs)/home')}
+              className="mt-5"
+            />
+          </View>
+        </ReactNativeModal>
       </View>
     </ScrollView>
   );
