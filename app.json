@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Refe",
-    "slug": "Refe",
+    "slug": "driverbookingapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/refe-logo.png",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/refe-logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ajithkaranam.Refe"
     },
     "web": {
       "bundler": "metro",
@@ -27,7 +28,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/refe-logo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
@@ -36,6 +37,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "72ea5297-b21d-4b3d-992b-8cb853e77b72"
+      }
+    },
+    "owner": "ajithkaranam"
   }
 }
