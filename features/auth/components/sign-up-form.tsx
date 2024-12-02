@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Image, View, ScrollView, Text, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
 import OAuth from '@/components/OAuth';
-import { useSignUp, SignedIn } from '@clerk/clerk-expo';
+import { useSignUp, useSignIn } from '@clerk/clerk-expo';
 import { ReactNativeModal } from 'react-native-modal';
 import LoaderOverlay from '@/components/Loader';
 

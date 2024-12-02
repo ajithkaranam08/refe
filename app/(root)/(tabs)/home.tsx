@@ -1,23 +1,21 @@
-import { SignedIn, SignedOut, useUser } from '@clerk/clerk-expo';
-import { Link } from 'expo-router';
+import CustomButton from '@/components/CustomButton';
 import { Text, View } from 'react-native';
 
 export default function Page() {
-  const { user } = useUser();
-
   return (
-    <View>
-      <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
-      </SignedIn>
-      <SignedOut>
-        <Link href="/sign-in">
-          <Text>Sign In</Text>
-        </Link>
-        <Link href="/sign-up">
-          <Text>Sign Up</Text>
-        </Link>
-      </SignedOut>
+    <View className="flex-1 justify-center items-center">
+      <CustomButton
+        title="Hire"
+        className="w-[80%] rounded-2xl mb-4"
+        textVariant="secondary"
+      ></CustomButton>
+      <Text className="text-center text-2xl font-Poppins-SemiBold">or</Text>
+      <CustomButton
+        title="Get Hire"
+        className="w-[80%] rounded-2xl mt-4"
+        bgVariant="secondary"
+        textVariant="primary"
+      ></CustomButton>
     </View>
   );
 }

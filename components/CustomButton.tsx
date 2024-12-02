@@ -4,6 +4,8 @@ import { ButtonProps } from '@/types/type';
 
 const getBgVariantStyle = (variant: ButtonProps['bgVariant']) => {
   switch (variant) {
+    case 'primary':
+      return 'bg-primary';
     case 'secondary':
       return 'bg-white';
     case 'danger':
@@ -20,7 +22,7 @@ const getBgVariantStyle = (variant: ButtonProps['bgVariant']) => {
 const getTextVariantStyle = (variant: ButtonProps['textVariant']) => {
   switch (variant) {
     case 'primary':
-      return 'primary';
+      return 'text-primary';
     case 'secondary':
       return 'text-white';
     case 'danger':
@@ -36,8 +38,8 @@ const CustomButton = ({
   onPress,
   title,
   textClass,
-  bgVariant = '#FF7F2A',
-  textVariant = 'default',
+  bgVariant = 'primary',
+  textVariant = 'primary',
   IconLeft,
   IconRight,
   className,
