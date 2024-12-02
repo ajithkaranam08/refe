@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Image, View, ScrollView, Text, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
 import OAuth from '@/components/OAuth';
-import { useSignUp } from '@clerk/clerk-expo';
+import { useSignUp, SignedIn } from '@clerk/clerk-expo';
 import { ReactNativeModal } from 'react-native-modal';
 import LoaderOverlay from '@/components/Loader';
 
@@ -46,6 +46,8 @@ const SignupForm = () => {
     }
   };
   const onPressVerify = async () => {
+    setIsLoader(true);
+    console.log('inside verification');
     if (!isLoaded) {
       return;
     }
@@ -74,6 +76,8 @@ const SignupForm = () => {
         error: err.errors[0].longMessage,
         state: 'success',
       });
+    } finally {
+      setIsLoader(false);
     }
   };
   return (

@@ -55,11 +55,24 @@ declare interface Ride {
 
 declare interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  bgVariant?: 'primary' | 'secondary' | 'danger' | 'outline' | 'success';
-  textVariant?: 'primary' | 'default' | 'secondary' | 'danger' | 'success';
+  bgVariant?:
+    | '#FF7F2A'
+    | 'primary'
+    | 'secondary'
+    | 'danger'
+    | 'outline'
+    | 'success';
+  textVariant?:
+    | '#020617'
+    | 'primary'
+    | 'default'
+    | 'secondary'
+    | 'danger'
+    | 'success';
   IconLeft?: React.ComponentType<any>;
   IconRight?: React.ComponentType<any>;
   className?: string;
+  textClass?: string;
 }
 
 declare interface GoogleInputProps {
@@ -79,7 +92,7 @@ declare interface GoogleInputProps {
 }
 
 declare interface InputFieldProps extends TextInputProps {
-  label: string;
+  label?: string;
   icon?: any;
   secureTextEntry?: boolean;
   labelStyle?: string;

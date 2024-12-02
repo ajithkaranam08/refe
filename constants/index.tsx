@@ -33,6 +33,7 @@ import onboarding2 from '@/assets/images/onboarding2.png';
 import onboarding3 from '@/assets/images/onboarding3.jpg';
 import signUpCar from '@/assets/images/signup-car.png';
 import refeLogo from '@/assets/images/Asset 3.png';
+import welcome from '../assets/images/Welcome-1.png';
 
 export const images = {
   onboarding1,
@@ -44,6 +45,7 @@ export const images = {
   noResult,
   message,
   refeLogo,
+  welcome,
 };
 
 export const icons = {
@@ -78,24 +80,8 @@ export const icons = {
 export const onboarding = [
   {
     id: 1,
-    title: 'The perfect ride is just a tap away!',
-    description:
-      'Your journey begins with Refe. Find your ideal Driver effortlessly.',
-    image: images.onboarding1,
-  },
-  {
-    id: 2,
-    title: 'Best Driver in your hands with Refe',
-    description:
-      'Discover the convenience of finding your perfect driver with Refe',
-    image: images.onboarding2,
-  },
-  {
-    id: 3,
-    title: "Your ride, your way. Let's go!",
-    description:
-      'Enter your destination, sit back, and let us take care of the rest.',
-    image: images.onboarding3,
+    title: 'Welcome to Ref get start your',
+    image: images.welcome,
   },
 ];
 
